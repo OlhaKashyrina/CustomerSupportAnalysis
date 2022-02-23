@@ -4,25 +4,36 @@ import main.analytics.models.parameters.Question;
 import main.analytics.models.parameters.ResponseType;
 import main.analytics.models.parameters.Service;
 
-import java.util.Date;
-
-//An abstract class, extended by DataLine and QueryLine
-//Represents an entity that contains information stored in every line of input
+/**
+ * An abstract class that represents a line of input.
+ * <p>
+ * Extended by {@link DataLine} and {@link QueryLine}.
+ */
 public abstract class Line {
 
+    /**
+     * The {@link Service} that the client support was contacted about.
+     */
     private Service service;
+    /**
+     * The type of {@link Question} that has been discussed.
+     */
     private Question question;
-
+    /**
+     * The {@link ResponseType} - possible variations ‘P’ (first answer) or ‘N’ (next answer)
+     */
     private ResponseType response_type;
-    private Date date;
 
-    Line(){}
-
-    public Line(Service service, Question question, ResponseType response_type, Date date) {
+    /**
+     * Class constructor specifying service, question and response type.
+     * @param service
+     * @param question
+     * @param response_type
+     */
+    public Line(Service service, Question question, ResponseType response_type) {
         this.service = service;
         this.question = question;
         this.response_type = response_type;
-        this.date = date;
     }
 
     public Service getService() {
@@ -49,21 +60,12 @@ public abstract class Line {
         this.response_type = response_type;
     }
 
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
-    }
-
     @Override
     public String toString() {
         return "Line{" +
                 "service=" + service +
                 ", question=" + question +
                 ", response_type=" + response_type +
-                ", date=" + date +
                 '}';
     }
 

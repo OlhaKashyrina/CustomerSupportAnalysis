@@ -14,9 +14,19 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
-//A class that contains methods for calculating output lines and writing them into a new file
+/**
+ * A class that contains methods for calculating output lines and writing them into a new file.
+ */
 public class OutputGenerator {
 
+    /**
+     * Method that calculates the average waiting time for every query line.
+     * @param allStrings                  a list of all lines in the input file parsed by {@link InputParser}.
+     *                                    First line is the number of lines below
+     * @return                            returns a list of String values of calculated average waiting time
+     * @throws NoDataToAnalyseException   throws this exception if allStrings is empty or none of the data lines
+     *                                    met the criteria in query lines
+     */
     public List<String> calculateOutput(List<String> allStrings) throws NoDataToAnalyseException {
 
         if(allStrings.isEmpty()) throw new NoDataToAnalyseException("Your file is empty. ");
@@ -39,7 +49,7 @@ public class OutputGenerator {
             }
             if(line instanceof DataLine)
                 dataLines.add((DataLine) line);
-            //As soon as we find a query line, we calculate the average waiting time for all data lines above that match the criteria
+            //As soon as we find a query line, we calculate the average waiting time for all data lines above that meet the criteria
             if(line instanceof QueryLine)
                 output.add(((QueryLine) line).calculateWaitingTime(dataLines));
         }
@@ -47,7 +57,16 @@ public class OutputGenerator {
         return output;
     }
 
-    //Method writes calculation results in a new file in the input file directory
+    /**
+     * Method that writes calculation results in a new file in the input file directory
+     * @param allStrings                 a list of all lines in the input file parsed by {@link InputParser}.
+     *                                   First line is the number of lines below
+     * @param path                       a String that contains path to the input file
+     * @return                           after writing new file with the result, returns a String with the
+     *                                   path to created file
+     * @throws NoDataToAnalyseException  throws this exception if allStrings is empty or none of the data lines
+     *                                   met the criteria in query lines
+     */
     public String writeReport(List<String> allStrings, String path) throws NoDataToAnalyseException {
 
         String writePath = Paths.get(path).getParent().toString() + "/result.txt";
