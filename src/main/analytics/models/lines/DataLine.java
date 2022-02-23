@@ -6,7 +6,10 @@ import main.analytics.models.parameters.Service;
 
 import java.util.Date;
 
+//Instances of this class contain data stored in input lines that start with C
 public class DataLine extends Line {
+
+    //In addition to Line fields contains the waiting time
     private Integer time;
 
     public DataLine(Service service, Question question, ResponseType response_type, Date date, Integer time) {

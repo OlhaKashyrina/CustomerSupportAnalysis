@@ -6,6 +6,8 @@ import main.analytics.models.parameters.Service;
 
 import java.util.Date;
 
+//An abstract class, extended by DataLine and QueryLine
+//Represents an entity that contains information stored in every line of input
 public abstract class Line {
 
     private Service service;

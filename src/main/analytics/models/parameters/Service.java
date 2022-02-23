@@ -2,6 +2,7 @@ package main.analytics.models.parameters;
 
 import main.analytics.exceptions.InvalidIdValueException;
 
+//Class represents the question entity, that is defined by service_id and variation_id
 public class Service {
 
     private static final int MAX_SERVICE_ID = 10;
@@ -12,6 +13,8 @@ public class Service {
 
     public Service(){}
 
+    //Method compares the service criteria for C line and D line
+    //Returns true if the record matches the criteria
     public boolean isValidForDataLine(Service dataService) {
         if (this.service_id == null)
             return true;
@@ -21,6 +24,7 @@ public class Service {
                 this.variation_id.equals(dataService.variation_id);
     }
 
+    //Validation for input values
     private boolean isValueInvalid(int value, int id_type) {
         if (value < 1)
             return true;

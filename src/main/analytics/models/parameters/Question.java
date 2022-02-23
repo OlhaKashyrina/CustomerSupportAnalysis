@@ -2,6 +2,7 @@ package main.analytics.models.parameters;
 
 import main.analytics.exceptions.InvalidIdValueException;
 
+//Class represents the question entity, that is defined by question_type_id, category_id and sub_category_id
 public class Question {
 
     private static final int MAX_QUESTION_TYPE_ID = 10;
@@ -14,6 +15,8 @@ public class Question {
 
     public Question(){}
 
+    //Method compares the question criteria for C line and D line
+    //Returns true if the record matches the criteria
     public boolean isValidForDataLine(Question dataQuestion) {
         if(this.question_type_id == null)
             return true;
@@ -29,6 +32,7 @@ public class Question {
                     this.sub_category_id.equals(dataQuestion.sub_category_id);
     }
 
+    //Validation for input values
     private boolean isValueInvalid(int value, int id_type){
         if(value < 1)
             return true;
